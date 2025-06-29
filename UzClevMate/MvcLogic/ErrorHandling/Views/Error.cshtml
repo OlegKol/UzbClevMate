@@ -1,0 +1,36 @@
+﻿
+@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutMetaDataPartial.cshtml")
+    @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutCustomStylesPartial.cshtml")
+</head>
+<body>
+    <div class="wrapper">
+        <header class="tp-header">
+            <div class="container">
+                <a class="logo" href="/">
+                    <img src="~/MvcLogic/_Common/Images/logo/logo.svg" />
+                </a>
+            </div>
+        </header>
+        <main class="tp-main tp-404">
+            <div class="container pb-4">
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <h1>Ошибка 404</h1>
+                        <h2>Страницы с&nbsp;таким адресом не&nbsp;существует.<br /> Вернитесь лучше на&nbsp;<a href="/" class="link">главную страницу</a> </h2>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

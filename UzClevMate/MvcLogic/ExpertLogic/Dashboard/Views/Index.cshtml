@@ -1,0 +1,140 @@
+﻿@{
+    Layout = "~/MvcLogic/_Common/Views/Shared/_LayoutExpertPage.cshtml";
+    ViewBag.Title = "Панель управления эксперта";
+}
+
+<div class="row form-group">
+    <div class="col">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</div>
+
+<h3>Задачи, экзамены, программы</h3>
+<div class="row mt-4">
+
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Темы предметов</h5>
+                <p class="card-text">Добавление и удаление тем предметов. Далее из тем формируются курсы - экзаменационные вопросы с набором привязанных тем</p>
+                <a href="/TopicEditor" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Редактор экзаменов курсов</h5>
+                <p class="card-text">Добавление и удаление экзменов курсов для дальнейшного создания шаблонов экспертами и кастомизированных программ обучения учителями</p>
+                <a href="/SubjectEditor" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Задания</h5>
+                <p class="card-text">Добавление и редактирование заданий к темам</p>
+                <a href="/TaskEditor" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Шаблоны программ курсов</h5>
+                <p class="card-text">Добавление и редактирование шаблонов программ курсов платформы</p>
+                <a href="/CourseTemplateEditor" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<h3>Телеграм</h3>
+<div class="row mt-4">
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Стикеры Телеграм</h5>
+                <p class="card-text">Добавление, удаление и редактирование стикеров Телеграм</p>
+                <a href="/TelegramStickerManagement" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Сообщение Телеграм</h5>
+                <p class="card-text">Ручная отправка сообщений в Телеграм</p>
+                <a href="/TelegramMessageManagement" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<h3>Письма</h3>
+<div class="row mt-4">
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Создание и разовая отправка писем</h5>
+                <p class="card-text">Создание и редактирование писем, а также функционал рассылки</p>
+                <a href="/EmailManagement" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Управление программами рассылки писем</h5>
+                <p class="card-text">Создание и редактирование программ рассылки писем</p>
+                <a href="/EmailProgram" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<h3>Награды</h3>
+<div class="row mt-4">
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Шаблоны наград</h5>
+                <p class="card-text">Добавление и редактирование шаблонов наград для курсов и самостоятельной подготовки</p>
+                <a href="/RewardTemplateEditor" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Награды</h5>
+                <p class="card-text">Добавление и редактирование наград для самостоятельной подготовки</p>
+                <a href="/SelfStudyRewardEditor" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<h3>Прочее</h3>
+<div class="row mt-4">
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Добавление файлов</h5>
+                <p class="card-text">Добавление и удаление любых картинок и других типов файлов</p>
+                <a href="/ExpertImageEditor" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+</div>

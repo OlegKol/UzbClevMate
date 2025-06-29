@@ -1,0 +1,62 @@
+﻿@model UzClevMate.MvcLogic.Apps.WebApp.AccountManagement.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "Вход";
+    Layout = "~/MvcLogic/_Common/Views/Shared/_LayoutAccountManagementPage.cshtml";
+}
+
+<main class="tp-main tp-login">
+    <div class="container pb-6 pt-3">
+        <div class="row">
+            <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                <div class="p-4 p-lg-6 bg-white border border-dashed">
+
+                    <div class="row align-items-center mb-sm-5">
+                        <div class="col-12 col-sm-4">
+                            <h1 class="mb-3 mb-sm-0">Вход</h1>
+                        </div>
+                    </div>
+
+                    <div id="loginForm">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "mb-5", role = "form" }))
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, new { @class = "label" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Password, new { @class = "label" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group pt-0" id="submit-btn">
+                                <button class="btn btn-primary" type="submit"><span>Войти</span></button>
+                            </div>
+                            <div class="form-group pt-0" id="loading-btn" style="display: none;">
+                                <button disabled class="btn btn-primary">
+                                    <span>Загружаем аккакунт</span>
+                                    <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        }
+                        <p>
+                            @Html.ActionLink("У меня еще нет аккаунта", "Register")
+                        </p>
+                        <p>
+                            @Html.ActionLink("Забыли пароль?", "ForgotPassword")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

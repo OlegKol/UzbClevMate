@@ -1,0 +1,99 @@
+﻿@model UzClevMate.MvcLogic.Apps.WebApp.AccountManagement.ViewModels.RegisterViewModel
+@using UzClevMate._Common.Extensions
+@{
+    ViewBag.Title = "Регистрация";
+    Layout = "~/MvcLogic/_Common/Views/Shared/_LayoutAccountManagementPage.cshtml";
+}
+
+<main class="tp-main tp-login">
+    <div class="container pb-6 pt-3">
+        <div class="row">
+            <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                <div class="p-4 p-lg-6 bg-white border border-dashed">
+                    <h1>@ViewBag.Title</h1>
+                    <p class="mb-5">Создайте аккаунт в ClevMate</p>
+                    <div id="loginForm">
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="mb-5 mt-4">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <div class="form-check mb-2">
+                                            @Html.LabelFor(m => m.UserRole, "Я ученик", new { @class = "form-check-label" })
+                                            @Html.RadioButtonFor(m => m.UserRole, _Definitions.StudentRole, new { @class = "form-check-input" })
+                                            @Html.ValidationMessageFor(m => m.UserRole, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-check mb-2">
+                                            @Html.LabelFor(m => m.UserRole, "Я учитель", new { @class = "form-check-label" })
+                                            @Html.RadioButtonFor(m => m.UserRole, _Definitions.TeacherRole, new { @class = "form-check-input" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Name, new { @class = "label" })
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, new { @class = "label" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Password, new { @class = "label" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "label" })
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group" id="submit-btn">
+                                <button class="btn btn-primary" type="submit">
+                                    <span>Зарегистрироваться</span>
+                                </button>
+                            </div>
+
+                            <input type="hidden" id="recaptchaResponse" name="recaptchaResponse">
+
+                            <div id="loading-btn" class="form-group" style="display: none;">
+                                <button disabled class="btn btn-primary">
+                                    <span>Создаём аккакунт</span>
+                                    <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        }
+                        <p>
+                            @Html.ActionLink("У меня уже есть аккаунт", "Login")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LctRHQqAAAAADtLTEIZAlUiLJ7ni4rYlnylNrip"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LctRHQqAAAAADtLTEIZAlUiLJ7ni4rYlnylNrip', { action: 'submit' }).then(function (token) {
+            document.getElementById('recaptchaResponse').value = token;
+        });
+    });
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

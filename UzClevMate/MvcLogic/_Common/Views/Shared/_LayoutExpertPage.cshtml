@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutMetaDataPartial.cshtml")
+    @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutCustomStylesPartial.cshtml")
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <div class="wrapper">
+        <header class="s-header border-bottom">
+            <nav class="navbar navbar-dark">
+                <a class="navbar-brand" href="/ExpertDashboard">
+                    <img class="mr-2" src="~/MvcLogic/_Common/Images/logo/logo.svg" alt="ClevMate" height="20">
+                </a>
+                <div>
+                    <a href="/" class="btn btn-primary">В учительскую</a>
+                    <div class="btn-group">
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <button onclick="document.getElementById('logoutForm').submit()" class="btn btn-light">
+                                <b>Выход</b>
+                            </button>
+                        }
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container mt-4">
+            @RenderBody()
+        </div>
+        @Html.Partial("~/MvcLogic/Components/MessageLogic/Views/Modal.cshtml")
+    </div>
+    @RenderSection("scripts", required: false)
+    @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutScriptsPartial.cshtml")
+</body>
+</html>

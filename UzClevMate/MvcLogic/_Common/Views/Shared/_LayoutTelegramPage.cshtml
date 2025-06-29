@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutMetaDataPartial.cshtml")
+    @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutCustomStylesPartial.cshtml")
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <div class="wrapper">
+        <main class="lk-main">
+            <div class="content-load">
+                @RenderBody()
+            </div>
+        </main>
+        @Html.Partial("~/MvcLogic/Components/MessageLogic/Views/Modal.cshtml")
+
+    </div>
+    @RenderSection("scripts", required: false)
+    @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutScriptsPartial.cshtml")
+</body>
+</html>

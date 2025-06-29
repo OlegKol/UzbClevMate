@@ -1,0 +1,19 @@
+﻿.slide-list-move {
+    transition: transform 0.5s;
+}
+
+.slide-list-move-to, .slide-list-move-to + .slide-list-move-to {
+    transition: none;
+}
+
+.fade-item {
+    transition: opacity 0.3s;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.3s;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}

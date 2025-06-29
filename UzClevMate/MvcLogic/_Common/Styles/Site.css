@@ -1,0 +1,89 @@
+﻿[v-cloak] {
+    display: none !important;
+}
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.table-header {
+    border-bottom: 1px solid #000;
+    font-weight: bold
+}
+
+.table-header-sort {
+    cursor: pointer
+}
+
+    .table-header-sort svg {
+        fill: #adadad;
+        -webkit-transition: fill .2s ease;
+        -o-transition: fill .2s ease;
+        transition: fill .2s ease
+    }
+
+    .table-header-sort.active {
+        cursor: default
+    }
+
+        .table-header-sort.active svg {
+            fill: #000
+        }
+
+    .table-header-sort:hover:not(.active) svg {
+        fill: #5f5f5f
+    }
+
+#topicSelector .custom-select {
+    padding: 0 !important;
+}
+
+.custom-select {
+    position: relative
+}
+
+.custom-select__list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #000;
+    border-top: 0;
+    background: #fff;
+    -webkit-box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    z-index: 10;
+    max-height: 70vh;
+    overflow: auto
+}
+
+    .custom-select__list .item {
+        border-bottom: 1px dashed #000;
+        padding: .65rem 1.25rem
+    }
+
+        .custom-select__list .item:not(.disabled) {
+            cursor: pointer
+        }
+
+            .custom-select__list .item:not(.disabled):last-child {
+                border-bottom: 0
+            }
+
+            .custom-select__list .item:not(.disabled):hover {
+                background: -o-linear-gradient(354.08deg, #B6A4FF 4.5%, #FF97F5 40.72%, #FFEF99 101.09%);
+                background: linear-gradient(95.92deg, #B6A4FF 4.5%, #FF97F5 40.72%, #FFEF99 101.09%);
+                background-size: 400% 400%;
+                -webkit-animation: gradient 3s ease infinite;
+                animation: gradient 3s ease infinite
+            }
+
+        .custom-select__list .item.disabled {
+            background: rgba(0,0,0,.1);
+            cursor: default
+        }

@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutMetaDataPartial.cshtml")
+    <link rel="stylesheet" href="/MvcLogic/_Common/Styles/styles-students.min.css">
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <div class="wrapper">
+        <aside class="lk-nav">
+            <a class="logo" href="/StudentDashboard"> <span></span></a>
+            <button class="btn d-lg-none" id="toggleMenu" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+            <button class="btn d-lg-none" title="Уведомления" data-bs-toggle="offcanvas" data-bs-target="#currentTasks" role="button" aria-controls="currentTasks" id="mobNotify">
+                <span class="position-relative">
+                    <img src="/MvcLogic/_Common/Images/icons/notification.svg" alt="">
+                    <span id="mobNotifyBadge" class="position-absolute top-0 start-100 badge rounded-pill bg-danger"></span>
+                </span>
+            </button>
+            <div class="lk-menu dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <ul class="d-none d-lg-block">
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" data-bs-trigger="hover" title="Уведомления">
+                        <a class="btn-tasks" title="Уведомления" data-bs-toggle="offcanvas" href="#currentTasks" role="button" aria-controls="currentTasks">
+                            <span class="position-relative">
+                                <img src="/MvcLogic/_Common/Images/icons/notification.svg" alt="">
+                                <span id="lgNotifyBadge" class="position-absolute top-0 start-100 badge rounded-pill bg-danger"></span>
+                            </span>
+                            <span class="title">Уведомления</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" title="Самостоятельная подготовка">
+                        <a class="active" href="/SelfStudyClassList/Main">
+                            <img src="/MvcLogic/_Common/Images/icons/pencils.svg" alt="">
+                            <span class="title">Самостоятельная подготовка</span>
+                        </a>
+                    </li>
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" title="Выполнение проверочных работ">
+                        <a class="active" href="/ExtraStudy">
+                            <img src="/MvcLogic/_Common/Images/icons/book.svg" alt="">
+                            <span class="title">Выполнение проверочных работ</span>
+                        </a>
+                    </li>
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" title="Подготовка с учителем">
+                        <a class="active" href="/StudentClassList">
+                            <img src="/MvcLogic/_Common/Images/icons/apps.svg" alt="">
+                            <span class="title">Подготовка с учителем</span>
+                        </a>
+                    </li>
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" title="Запросы учителю на добавление">
+                        <a class="active" href="/StudentRequests">
+                            <img src="/MvcLogic/_Common/Images/icons/account_box.svg" alt="">
+                            <span class="title">Запросы учителю на добавление</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" title="Настройки">
+                        <a href="/StudentSettings">
+                            <img src="/MvcLogic/_Common/Images/icons/settings.svg" alt="">
+                            <span class="title">Настройки</span>
+                        </a>
+                    </li>
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" title="Задать вопрос">
+                        <a href="javascript:;" onclick="window.common.askAnythingApi.showAskUsQuestionModal()" type="button">
+                            <span class="position-relative">
+                                <img src="/MvcLogic/_Common/Images/icons/help.svg" alt="">
+                                <span id="supportThreadsBadge" class="position-absolute start-100 badge rounded-pill bg-info" style="top:-10px;"></span>
+                                <span class="title">Задать вопрос</span>
+                            </span>
+                        </a>
+                    </li>
+
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <li data-bs-toggle="tooltip" data-bs-placement="right" title="Выход из аккаунта">
+                            <a href="javascript:document.getElementById('logoutForm').submit()">
+                                <img src="/MvcLogic/_Common/Images/icons/logout.svg" alt="">
+                                <span class="title">Выход</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </aside>
+        <main class="lk-main">
+            <div class="content-load">
+                @RenderBody()
+            </div>
+            @Html.Partial("~/MvcLogic/_Common/Views/Shared/_FooterCommonPartial.cshtml")
+        </main>
+        @Html.Partial("~/MvcLogic/Components/MessageLogic/Views/Modal.cshtml")
+        @*@Html.Partial("~/_Common/_CommonMvcLogic/AskAnythingLogic/Views/Modal.cshtml")
+        @Html.Partial("~/Students/ActionRequiredLogic/Views/StudentActionRequiredBlock.cshtml")*@
+
+    </div>
+    @RenderSection("scripts", required: false)
+    @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutScriptsPartial.cshtml")
+    <script src="~/_Common/_CommonMvcLogic/AskAnythingLogic/Scripts/ask-anything10122023.js"></script>
+</body>
+</html>

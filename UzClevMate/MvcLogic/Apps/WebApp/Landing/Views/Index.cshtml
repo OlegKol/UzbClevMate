@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/MvcLogic/_Common/Views/Shared/_LayoutAdminPage.cshtml";
+}
+
+
+<div class="jumbotron">
+    <h1>@Resources.Translations.Example</h1>
+</div>
+
+<ul class="nav navbar-nav navbar-right">
+    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+</ul
+>
+<a href="/Language/Set?culture=ru">Русский</a>
+<a href="/Language/Set?culture=uz">Uzbek</a>

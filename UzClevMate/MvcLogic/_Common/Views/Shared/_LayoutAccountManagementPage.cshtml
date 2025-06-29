@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutMetaDataPartial.cshtml")
+    @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutCustomStylesPartial.cshtml")
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <div class="wrapper">
+        <header class="tp-header">
+            <div class="container">
+                <a class="logo" href="/">
+                    <img src="~/MvcLogic/_Common/Images/logo/logo.svg" alt="">
+                </a>
+            </div>
+        </header>
+        @RenderBody()
+    </div>
+    @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutScriptsPartial.cshtml")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+
+            $('form').on('submit', function (e) {
+                $("#loading-btn").show();
+                $("#submit-btn").hide();
+            });
+
+            $('form').on("invalid-form.validate", function (e) {
+                $("#loading-btn").hide();
+                $("#submit-btn").show();
+            });
+        });
+    </script>
+</body>
+</html>

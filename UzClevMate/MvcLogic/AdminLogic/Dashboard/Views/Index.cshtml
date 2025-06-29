@@ -1,0 +1,71 @@
+﻿@{
+    Layout = "~/MvcLogic/_Common/Views/Shared/_LayoutAdminPage.cshtml";
+    ViewBag.Title = "Панель управления администратора";
+}
+
+<div class="row form-group">
+    <div class="col">
+        <h3>@ViewBag.Title</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Поддержка пользователей</h5>
+                <p class="card-text">Ответы на вопросы пользователей</p>
+                <a href="/SupportMessage" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Статистика учителей</h5>
+                <p class="card-text">Данные по активности учителей</p>
+                <a href="/TeacherStatistics" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Статистика учеников</h5>
+                <p class="card-text">Данные по активности учеников</p>
+                <a href="/StudentStatistics" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Статистика подписок учителей</h5>
+                <p class="card-text">Тарифы, платежи, сроки действия</p>
+                <a href="/TeacherPaymentStatistics" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Логи</h5>
+                <p class="card-text">Выгрузка журнала записей работы платформы</p>
+                <a href="/Log" class="btn btn-primary"><span>Посмотреть логи</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 form-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Фоновые процессы</h5>
+                <p class="card-text">Управление фоновыми процессами платформы</p>
+                <a href="/Hangfire" target="_blank" class="btn btn-primary"><span>Перейти</span></a>
+            </div>
+        </div>
+    </div>
+</div>

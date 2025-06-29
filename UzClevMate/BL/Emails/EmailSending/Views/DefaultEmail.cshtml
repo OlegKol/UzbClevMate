@@ -1,0 +1,151 @@
+﻿@{
+    Layout = null;
+}
+
+@model UzClevMate.BL.Emails.EmailSending.ViewModels.CommonEmailModel
+@using UzClevMate.BL.Emails.EmailSending.Parsers
+@using System.Configuration
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+</head>
+<body style="margin: 0px; padding: 20px 0px 20px 0px; background-color: #fff;" bgcolor="#fff;">
+    <table align="center" border="1" cellpadding="0" cellspacing="0" width="600" bgcolor="#ffffff" style="border-collapse:collapse;font-family:Helvetica,Arial,sans-serif;font-size:17px;line-height:29px;color:#2a2c2e; border: 1px solid #000;">
+        <tbody>
+            <tr>
+                <td>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td style="line-height:0px">
+                                    <a href="https://clevmate.com/" style="text-decoration:none">
+                                        @if (string.IsNullOrWhiteSpace(Model.ImageUrl))
+                                        {
+                                            <img src="@ConfigurationManager.AppSettings["DefaultSite"]/BL/Emails/EmailSending/Images/@(EmailTemplatesParser.GetRandomImage())" alt="" width="600" height="268" class="CToWUd" />
+                                        }
+                                        else
+                                        {
+                                            <img src="@(ConfigurationManager.AppSettings["DefaultSite"] + Model.ImageUrl)" alt="" width="600" height="268" class="CToWUd" />
+                                        }
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <font color="#888888"></font><font color="#888888"></font>
+                    <table border="0" cellpadding="0" cellspacing="0" width="600" bgcolor="#ffffff" style="border-collapse:collapse;font-family:Helvetica,Arial,sans-serif;font-size:17px;line-height:29px;color:#2a2c2e;">
+                        <tbody>
+                            <tr>
+                                <td style="padding:35px 75px 0 55px">
+                                    <font color="#888888"></font><font color="#888888"></font><font color="#888888"></font>
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="color:#2a2c2e;font-size:17px;line-height:29px">
+                                        <tbody>
+                                            <tr>
+                                                @if (!string.IsNullOrWhiteSpace(Model.HelloPhrase))
+                                                {
+                                                    if (string.IsNullOrWhiteSpace(Model.Name))
+                                                    {
+                                                        <td align="left" style="padding-bottom: 20px;"><b>@Model.HelloPhrase!</b></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td align="left" style="padding-bottom: 20px;"><b>@Model.HelloPhrase, @Model.Name!</b></td>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (string.IsNullOrWhiteSpace(Model.Name))
+                                                    {
+                                                        <td align="left" style="padding-bottom: 20px;"><b>Приветствуем!</b></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td align="left" style="padding-bottom: 20px;"><b>Приветствуем, @Model.Name!</b></td>
+                                                    }
+                                                }
+                                            </tr>
+                                            @foreach (var paragraph in Model.EmailParagraphs)
+                                            {
+                                                <tr>
+                                                    <td align="left" style="padding-bottom: 29px;">@Html.Raw(paragraph)</td>
+                                                </tr>
+                                            }
+                                            <tr>
+                                                <td style="padding-top:10px;padding-bottom:30px">
+                                                    <font color="#888888"></font>
+                                                    <font color="#888888"></font>
+                                                    <font color="#888888"></font>
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tbody>
+                                                            <tr>
+                                                                @if (string.IsNullOrWhiteSpace(Model.FooterPhrase))
+                                                                {
+                                                                    <td align="left" style="padding-bottom:29px">
+                                                                        <div>На связи,</div>
+                                                                        @if (string.IsNullOrWhiteSpace(Model.EmailSenderName))
+                                                                        {
+                                                                            <div>Команда ClevMate</div>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <div>@Model.EmailSenderName</div>
+                                                                        }
+                                                                    </td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td align="left" style="padding-bottom:29px">
+                                                                        <div>@Model.FooterPhrase</div>
+                                                                        @if (string.IsNullOrWhiteSpace(Model.EmailSenderName))
+                                                                        {
+                                                                            <div>Команда ClevMate</div>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <div>@Model.EmailSenderName</div>
+                                                                        }
+                                                                    </td>
+                                                                }
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding-bottom:10px">
+                                                                    <font color="#888888" />
+                                                                    <font color="#888888" />
+                                                                    <font color="#888888" />
+                                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="left" style="padding-bottom:20px;font-size:14px;">@ConfigurationManager.AppSettings["ProjectName"], 2025</td>
+                                                                                @*<td align="left" style="padding-bottom:20px;font-size:14px;"><a target="_blank" href="https://vk.com/clevmate">Группа ВК</a></td>*@
+                                                                                <td align="left" style="padding-bottom:20px;font-size:14px;"><a href="@ConfigurationManager.AppSettings["DefaultSite"]/@Model.UnsubscribeLink/@Model.UserId">Отписаться</a></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <font color="#888888" />
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table><font color="#888888"></font>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table><font color="#888888"></font>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <font color="#888888"></font>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
