@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
@@ -21,7 +22,9 @@ namespace UzClevMate._Common.Extensions
             }
             else
             {
-                return res.Name;
+
+                var localizedValue = Resources.Translations.ResourceManager.GetString(res.Name, CultureInfo.CurrentUICulture);
+                return localizedValue ?? res.Name;
             }
         }
 

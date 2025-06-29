@@ -75,7 +75,6 @@
 
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {
-                        @Html.AntiForgeryToken()
                         <li data-bs-toggle="tooltip" data-bs-placement="right" title="Выход из аккаунта">
                             <a href="javascript:document.getElementById('logoutForm').submit()">
                                 <img src="/MvcLogic/_Common/Images/icons/logout.svg" alt="">
@@ -93,12 +92,13 @@
             @Html.Partial("~/MvcLogic/_Common/Views/Shared/_FooterCommonPartial.cshtml")
         </main>
         @Html.Partial("~/MvcLogic/Components/MessageLogic/Views/Modal.cshtml")
-        @*@Html.Partial("~/_Common/_CommonMvcLogic/AskAnythingLogic/Views/Modal.cshtml")
-        @Html.Partial("~/Students/ActionRequiredLogic/Views/StudentActionRequiredBlock.cshtml")*@
-
+        @if (User.Identity.IsAuthenticated)
+        {
+            @*@Html.Partial("~/_Common/_CommonMvcLogic/AskAnythingLogic/Views/Modal.cshtml")
+                @Html.Partial("~/Students/ActionRequiredLogic/Views/StudentActionRequiredBlock.cshtml")*@
+        }
     </div>
     @RenderSection("scripts", required: false)
     @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutScriptsPartial.cshtml")
-    <script src="~/_Common/_CommonMvcLogic/AskAnythingLogic/Scripts/ask-anything10122023.js"></script>
 </body>
 </html>

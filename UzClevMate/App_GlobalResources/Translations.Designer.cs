@@ -68,5 +68,23 @@ namespace Resources {
                 return ResourceManager.GetString("Example", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Matematika.
+        /// </summary>
+        internal static string Mathematics {
+            get {
+                return ResourceManager.GetString("Mathematics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fizika.
+        /// </summary>
+        internal static string Physics {
+            get {
+                return ResourceManager.GetString("Physics", resourceCulture);
+            }
+        }
     }
 }

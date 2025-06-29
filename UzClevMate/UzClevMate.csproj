@@ -243,6 +243,7 @@
     <Compile Include="BL\LogManagement\Models\LogRecord.cs" />
     <Compile Include="BL\LogManagement\Models\LogString.cs" />
     <Compile Include="BL\LogManagement\Models\LogTypeEnum.cs" />
+    <Compile Include="BL\StudyLogic\Disciplines\Models\Discipline.cs" />
     <Compile Include="BL\UzClevMateUsers\Students\Managers\StudentEditManager.cs" />
     <Compile Include="BL\UzClevMateUsers\Students\Managers\StudentGetManager.cs" />
     <Compile Include="BL\UzClevMateUsers\Students\Models\Student.cs" />

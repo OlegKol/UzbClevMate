@@ -22,3 +22,8 @@ else
 <script src="~/MvcLogic/Components/ShowImageLogic/Scripts/show-image-mixin16122023.js"></script>
 <script src="~/MvcLogic/Components/MessageLogic/Scripts/messageLogic.js"></script>
 <script src="~/MvcLogic/Components/VueSelectComponent/Scripts/custom-select-component.js"></script>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <script src="~/MvcLogic/Components/AskAnythingLogic/Scripts/ask-anything10122023.js"></script>
+}

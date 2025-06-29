@@ -7,12 +7,12 @@ namespace UzClevMate._Common.Extensions
     {
         public static bool IsAdmin(this string email)
         {
-            return ConfigurationManager.AppSettings["Admins"].Split().ToList().Any(x => x.ToLower() == email);
+            return ConfigurationManager.AppSettings["Admins"].Split().ToList().Any(x => x.ToLower() == email.ToLower());
         }
 
         public static bool IsExpert(this string email)
         {
-            return ConfigurationManager.AppSettings["Experts"].Split().ToList().Any(x => x.ToLower() == email);
+            return ConfigurationManager.AppSettings["Experts"].Split().ToList().Any(x => x.ToLower() == email.ToLower());
         }
     }
 }

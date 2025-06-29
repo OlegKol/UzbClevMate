@@ -10,148 +10,114 @@
     @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutCustomStylesPartial.cshtml")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+
+    @using UzClevMate._Common.Extensions
 </head>
 <body>
     <div class="wrapper">
         <aside class="lk-nav">
-            <a class="logo" href="/Dashboard"> <span></span></a>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <button class="btn d-lg-none" id="toggleMenu" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                <button class="btn d-none" title="Требует вашего внимания" data-bs-toggle="offcanvas" data-bs-target="#currentTasks" role="button" aria-controls="currentTasks" id="mobNotify">
-                    <span class="position-relative">
-                        <img src="/MvcLogic/_Common/Images/icons/notification.svg" alt="">
-                        <span id="mobNotifyBadge" class="position-absolute top-0 start-100 badge rounded-pill bg-danger"></span>
-                    </span>
-                </button>
-            }
-            else
-            {
-                <a class="btn d-lg-none" title="Вход в учительскую" href="/Account/Login" id="mobLogin">
-                    <span class="position-relative">
-                        <img src="/MvcLogic/_Common/Images/icons/login.svg" alt="">
-                    </span>
-                </a>
-            }
+            <a class="logo" href="/TeacherDashboard"> <span></span></a>
+            <button class="btn d-lg-none" id="toggleMenu" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+            <button class="btn d-none" title="Требует вашего внимания" data-bs-toggle="offcanvas" data-bs-target="#currentTasks" role="button" aria-controls="currentTasks" id="mobNotify">
+                <span class="position-relative">
+                    <img src="/MvcLogic/_Common/Images/icons/notification.svg" alt="">
+                    <span id="mobNotifyBadge" class="position-absolute top-0 start-100 badge rounded-pill bg-danger"></span>
+                </span>
+            </button>
+
             <div class="lk-menu dropdown-menu" aria-labelledby="dropdownMenuButton">
-                @if (User.Identity.IsAuthenticated)
+                <ul class="d-none d-lg-block">
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" data-bs-trigger="hover" title="Требует вашего внимания">
+                        <a class="btn-tasks" title="Требует вашего внимания" data-bs-toggle="offcanvas" href="#currentTasks" role="button" aria-controls="currentTasks">
+                            <span class="position-relative">
+                                <img src="/MvcLogic/_Common/Images/icons/notification.svg" alt="">
+                                <span id="lgNotifyBadge" class="position-absolute top-0 start-100 badge rounded-pill bg-danger"></span>
+                            </span>
+                            <span class="title">Сообщения</span>
+                        </a>
+                    </li>
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" title="Учительская">
+                        <a href="/TeacherDashboard">
+                            <img src="/MvcLogic/_Common/Images/icons/apps.svg" alt="">
+                            <span class="title">Учительская</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" title="Классы">
+                        <a class="active" href="/ClassList">
+                            <img src="/MvcLogic/_Common/Images/icons/groups.svg" alt="">
+                            <span class="title">Классы</span>
+                        </a>
+                    </li>
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" title="Ученики">
+                        <a class="active" href="/TeacherDashboard">
+                            <img src="/MvcLogic/_Common/Images/icons/account_box.svg" alt="">
+                            <span class="title">Ученики</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" title="Программы">
+                        <a class="active" href="/CourseManagement">
+                            <img src="/MvcLogic/_Common/Images/icons/book.svg" alt="">
+                            <span class="title">Программы</span>
+                        </a>
+                    </li>
+                    <li id="extra-services" data-bs-toggle="tooltip" data-bs-placement="right" title="Проверочные работы">
+                        <a href="/TeacherDashboard#extraservices">
+                            <img src="/MvcLogic/_Common/Images/icons/fact_check.svg" alt="">
+                            <span class="title">Проверочные работы</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" title="Настройки и тарифы">
+                        <a href="/TeacherSettings">
+                            <img src="/MvcLogic/_Common/Images/icons/settings.svg" alt="">
+                            <span class="title">Настройки и тарифы</span>
+                        </a>
+                    </li>
+                    <li data-bs-toggle="tooltip" data-bs-placement="right" title="Задать вопрос">
+                        <a href="javascript:;" onclick="window.common.askAnythingApi.showAskUsQuestionModal()" type="button">
+                            <span class="position-relative">
+                                <img src="/MvcLogic/_Common/Images/icons/help.svg" alt="">
+                                <span id="supportThreadsBadge" class="position-absolute start-100 badge rounded-pill bg-info" style="top:-10px;"></span>
+                                <span class="title">Задать вопрос</span>
+                            </span>
+                        </a>
+                    </li>
+
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        <li data-bs-toggle="tooltip" data-bs-placement="right" title="Выход из аккаунта">
+                            <a href="javascript:document.getElementById('logoutForm').submit()">
+                                <img src="/MvcLogic/_Common/Images/icons/logout.svg" alt="">
+                                <span class="title">Выход</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+
+                @if (this.User.Identity.Name.IsExpert())
                 {
-                    <ul class="d-none d-lg-block">
-                        <li data-bs-toggle="tooltip" data-bs-placement="right" data-bs-trigger="hover" title="Требует вашего внимания">
-                            <a class="btn-tasks" title="Требует вашего внимания" data-bs-toggle="offcanvas" href="#currentTasks" role="button" aria-controls="currentTasks">
-                                <span class="position-relative">
-                                    <img src="/MvcLogic/_Common/Images/icons/notification.svg" alt="">
-                                    <span id="lgNotifyBadge" class="position-absolute top-0 start-100 badge rounded-pill bg-danger"></span>
-                                </span>
-                                <span class="title">Сообщения</span>
-                            </a>
-                        </li>
-                        <li data-bs-toggle="tooltip" data-bs-placement="right" title="Учительская">
-                            <a href="/Dashboard">
-                                <img src="/MvcLogic/_Common/Images/icons/apps.svg" alt="">
-                                <span class="title">Учительская</span>
-                            </a>
-                        </li>
-                    </ul>
                     <ul>
-                        <li data-bs-toggle="tooltip" data-bs-placement="right" title="Классы">
-                            <a class="active" href="/ClassList">
-                                <img src="/MvcLogic/_Common/Images/icons/groups.svg" alt="">
-                                <span class="title">Классы</span>
-                            </a>
-                        </li>
-                        <li data-bs-toggle="tooltip" data-bs-placement="right" title="Ученики">
-                            <a class="active" href="/Dashboard">
-                                <img src="/MvcLogic/_Common/Images/icons/account_box.svg" alt="">
-                                <span class="title">Ученики</span>
+                        <li data-bs-toggle="tooltip" data-bs-placement="right" title="Панель эксперта">
+                            <a href="/ExpertDashboard" type="button">
+                                <h3>Э</h3>
+                                <span class="title">Панель эксперта</span>
                             </a>
                         </li>
                     </ul>
-                    <ul>
-                        <li data-bs-toggle="tooltip" data-bs-placement="right" title="Программы">
-                            <a class="active" href="/CourseManagement">
-                                <img src="/MvcLogic/_Common/Images/icons/book.svg" alt="">
-                                <span class="title">Программы</span>
-                            </a>
-                        </li>
-                        <li id="extra-services" data-bs-toggle="tooltip" data-bs-placement="right" title="Проверочные работы">
-                            <a href="/Dashboard#extraservices">
-                                <img src="/MvcLogic/_Common/Images/icons/fact_check.svg" alt="">
-                                <span class="title">Проверочные работы</span>
-                            </a>
-                        </li>
-                        <li data-bs-toggle="tooltip" data-bs-placement="right" data-bs-trigger="hover" title="Магазин работ">
-                            <a class="btn-tasks" title="Магазин работ" href="/OnlineStore">
-                                <img src="~/MvcLogic/_Common/Images/icons/shopping_cart.svg" alt="">
-                                <span class="title">Магазин работ</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li data-bs-toggle="tooltip" data-bs-placement="right" title="Настройки и тарифы">
-                            <a href="/TeacherSettings">
-                                <img src="/MvcLogic/_Common/Images/icons/settings.svg" alt="">
-                                <span class="title">Настройки и тарифы</span>
-                            </a>
-                        </li>
-                        <li data-bs-toggle="tooltip" data-bs-placement="right" title="Задать вопрос">
-                            <a href="javascript:;" onclick="window.common.askAnythingApi.showAskUsQuestionModal()" type="button">
-                                <span class="position-relative">
-                                    <img src="/MvcLogic/_Common/Images/icons/help.svg" alt="">
-                                    <span id="supportThreadsBadge" class="position-absolute start-100 badge rounded-pill bg-info" style="top:-10px;"></span>
-                                    <span class="title">Задать вопрос</span>
-                                </span>
-                            </a>
-                        </li>
-
-                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <li data-bs-toggle="tooltip" data-bs-placement="right" title="Выход из аккаунта">
-                                <a href="javascript:document.getElementById('logoutForm').submit()">
-                                    <img src="/MvcLogic/_Common/Images/icons/logout.svg" alt="">
-                                    <span class="title">Выход</span>
-                                </a>
-                            </li>
-                        }
-                    </ul>
-                    if (this.User.IsInRole("Expert"))
-                    {
-                        <ul>
-                            <li data-bs-toggle="tooltip" data-bs-placement="right" title="Панель эксперта">
-                                <a href="/ExpertDashboard" type="button">
-                                    <h3>Э</h3>
-                                    <span class="title">Панель эксперта</span>
-                                </a>
-                            </li>
-                        </ul>
-                    }
-
-                    if (this.User.IsInRole("Admin"))
-                    {
-                        <ul>
-                            <li data-bs-toggle="tooltip" data-bs-placement="right" title="Панель админа">
-                                <a href="/AdminDashboard" type="button">
-                                    <h3>A</h3>
-                                    <span class="title">Панель админа</span>
-                                </a>
-                            </li>
-                        </ul>
-                    }
                 }
-                else
+
+                @if (this.User.Identity.Name.IsAdmin())
                 {
-                    <ul class="d-none d-lg-block">
-                        <li data-bs-toggle="tooltip" data-bs-placement="right" data-bs-trigger="hover" title="Вход в учительскую">
-                            <a class="btn-tasks" title="Вход в учительскую" href="/Account/Login">
-                                <img src="/MvcLogic/_Common/Images/icons/login.svg" alt="">
-                                <span class="title">Вход в учительскую</span>
-                            </a>
-                        </li>
-                        <li data-bs-toggle="tooltip" data-bs-placement="right" data-bs-trigger="hover" title="Магазин работ">
-                            <a class="btn-tasks" title="Магазин работ" href="/OnlineStore">
-                                <img src="~/MvcLogic/_Common/Images/icons/shopping_cart.svg" alt="">
-                                <span class="title">Магазин работ</span>
+                    <ul>
+                        <li data-bs-toggle="tooltip" data-bs-placement="right" title="Панель админа">
+                            <a href="/AdminDashboard" type="button">
+                                <h3>A</h3>
+                                <span class="title">Панель админа</span>
                             </a>
                         </li>
                     </ul>
@@ -167,16 +133,12 @@
         @Html.Partial("~/MvcLogic/Components/MessageLogic/Views/Modal.cshtml")
         @if (User.Identity.IsAuthenticated)
         {
-            @Html.Partial("~/_Common/_CommonMvcLogic/AskAnythingLogic/Views/Modal.cshtml")
-            @Html.Partial("~/Teachers/ActionRequiredLogic/Views/TeacherActionRequiredBlock.cshtml")
+            @*@Html.Partial("~/_Common/_CommonMvcLogic/AskAnythingLogic/Views/Modal.cshtml")
+                @Html.Partial("~/Teachers/ActionRequiredLogic/Views/TeacherActionRequiredBlock.cshtml")*@
         }
     </div>
 
     @RenderSection("scripts", required: false)
     @Html.Partial("~/MvcLogic/_Common/Views/Shared/LayoutScriptsPartial.cshtml")
-    @if (User.Identity.IsAuthenticated)
-    {
-        <script src="~/_Common/_CommonMvcLogic/AskAnythingLogic/Scripts/ask-anything10122023.js"></script>
-    }
 </body>
 </html>

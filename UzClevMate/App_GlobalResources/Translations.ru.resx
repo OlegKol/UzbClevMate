@@ -120,4 +120,10 @@
   <data name="Example" xml:space="preserve">
     <value>Пример по-русски</value>
   </data>
+  <data name="Mathematics" xml:space="preserve">
+    <value>Математика</value>
+  </data>
+  <data name="Physics" xml:space="preserve">
+    <value>Физика</value>
+  </data>
 </root>
