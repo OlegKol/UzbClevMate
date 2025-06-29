@@ -481,6 +481,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="BL\StudyLogic\Topics\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
